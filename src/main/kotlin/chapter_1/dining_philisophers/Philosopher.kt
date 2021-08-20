@@ -1,11 +1,9 @@
 package chapter_1.dining_philisophers
 
-const val THINK_TIME_MILLIS = 5;
-const val EAT_TIME_MILLIS = 5;
 
 interface Philosopher : Runnable {
     fun eat()
-    fun pickUpForks()
+    fun pickUpForks() : Boolean
     fun putDownForks()
     fun getResult(): String
 
@@ -15,7 +13,7 @@ interface Philosopher : Runnable {
 
     fun think() {
         log("thinking...\n")
-        waitMillis(THINK_TIME_MILLIS)
+        waitMillis((Math.random() * 100).toInt())
     }
 }
 
@@ -27,7 +25,57 @@ abstract class AbstractPhilosopher(
 
     var eatCounter: Int = 0
     companion object {
-        const val NUM_EATS: Int = 10_000
+        const val NUM_EATS: Int = 50
+    }
+
+    override fun run() {
+        for(i in 0 until NUM_EATS) {
+            eat()
+            think()
+        }
+    }
+
+    override fun putDownForks() {
+        right.putDown()
+        left.putDown()
+    }
+
+    override fun toString(): String {
+        return "Philosopher-$id"
+    }
+
+    override fun getResult(): String {
+        var message = "done"
+        if (eatCounter == 0) {
+            message = "left hungry"
+        } else if (eatCounter < NUM_EATS) {
+            val eatsLeft = NUM_EATS - eatCounter
+            message = "$eatsLeft eats left"
+        }
+        return "$this $message"
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
