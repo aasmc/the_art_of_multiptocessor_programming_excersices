@@ -16,3 +16,12 @@ There are five forks for them to share (1 – 5) and to be able to eat, a philos
 - Amend your program so that it never reaches a state where philosophers are deadlocked, that is, it is never the case that every philosopher holds one chopstick and is stuck waiting for another to get the second chopstick.
 - Amend your program so that no philosopher ever starves.
 - Write a program to provide a starvation-free solution for n philosophers for any natural number n.
+
+## Solution
+All but one philosopher try to take first left fork, then right fork to eat. If a philosopher succeeds, he eats for some time
+while those philosophers that are to the left or to the right of him have to wait for a fork to be available once again.
+
+To avoid cyclic dependency, or a deadlock when all philosophers take a left fork and there's no right fork available
+(the programme stalls in this case), one of the philosophers takes first right fork, and then left fork. 
+
+Taking a fork means to lock on that fork, i.e. it becomes unavailable until the philosopher releases the lock.

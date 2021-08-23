@@ -1,8 +1,13 @@
 package chapter_1.dining_philisophers
 
-fun main() {
+fun main()  {
     println("Enter the number of philosophers: ")
-    val num = readLine()?.toInt() ?: 5
+    val numStr = readLine() ?: ""
+    var num = 5
+    try {
+        num = numStr.toInt()
+    } catch (ignored: Exception) {
+    }
     val philosophers = PhilosopherFactory.createPhilosophers(num)
     val threads = arrayOfNulls<Thread>(philosophers.size)
     for (i in threads.indices) {

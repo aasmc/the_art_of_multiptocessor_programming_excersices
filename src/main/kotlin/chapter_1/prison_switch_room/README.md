@@ -19,3 +19,15 @@ all of you to the crocodiles. Choose wisely!
 
 ### Hint: 
 The prisoners need not all do the same thing.
+
+## Solution
+
+Prisoners must select one leader. 
+### Actions of ordinary prisoners when they enter the switch room:
+- if the switch is on, they do nothing
+- if the switch is off, they turn it on but only if they have never done this before
+
+### Actions of a leader when he enters the switch room:
+- if the switch is off, he does nothing
+- if the switch is on, and it is the first time he enters the room, he simply turns it off
+- if the switch is on, and it is not the first time he enters the room, he turns it off and begins counting how many times he sees the switch in 'on' position. When he counts to P-1 (P is the number of prisoners), he says that every prisoner has visited the room at least once. 
